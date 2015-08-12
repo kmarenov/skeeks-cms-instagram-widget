@@ -112,7 +112,7 @@ class InstagramPhotos extends WidgetRenderable
      */
     protected function _run()
     {
-        VkAsset::register($this->view);
+        //VkAsset::register($this->view);
         return parent::_run();
     }
 }

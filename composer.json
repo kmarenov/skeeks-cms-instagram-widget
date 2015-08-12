@@ -24,7 +24,8 @@
     }
   ],
   "require": {
-    "skeeks/cms": "*"
+    "skeeks/cms": "*",
+    "cosenary/instagram": "*"
   },
   "autoload": {
     "psr-4": {
