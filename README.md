@@ -1,10 +1,10 @@
-Виджет комментарии VK
+Виджет фотографий из Instagram для Skeeks CMS
 ===================================
 
 Информация
 -------------------
 
-Виджет комментарии VK
+Виджет фотографий из Instagram
 
 Установка
 ------------
@@ -13,7 +13,7 @@
 1) Добавить в `composer.json` файл проекта.
 
 ```
-"skeeks/cms-vk-comments": "*"
+"kmarenov/cms-instagram-photos": "*"
 ```
 
 2) Запуск миграций и необходимых установок.
@@ -26,9 +26,9 @@ php yii cms/update
 
 ```php
 
-<?= \skeeks\cms\vk\comments\VkCommentsWidget::widget([
-    'namespace' => 'VkCommentsWidget-main',
-    'apiId'     => 4982033
+<?= \skeeks\cms\instagram\photos\InstagramPhotos::widget([
+    'accessToken' => 'Your-api-access-token',
+    'userId' => 456931526
 ]); ?>
 
 ```
