@@ -14,8 +14,8 @@ use yii\helpers\Json;
  */
 class InstagramWidget extends WidgetRenderable
 {
-    public $accessToken;
-    public $userId;
+    public $clientId;
+    public $userName;
     public $data;
 
     static public function descriptorConfig()
@@ -41,8 +41,8 @@ class InstagramWidget extends WidgetRenderable
     {
         return array_merge(parent::attributeLabels(),
             [
-                'accessToken' => 'Access Token',
-                'userId' => 'ID пользователя',
+                'clientId' => 'CLIENT ID для доступа к API',
+                'userName' => 'Имя пользователя, фотографии которого показывать',
             ]);
     }
 
@@ -50,9 +50,7 @@ class InstagramWidget extends WidgetRenderable
     {
         return ArrayHelper::merge(parent::rules(),
             [
-                [['accessToken'], 'string'],
-                [['userId'], 'integer'],
-                [['accessToken', 'userId'], 'required'],
+                [['clientId', 'userName'], 'safe'],
             ]);
     }
 
@@ -61,19 +59,19 @@ class InstagramWidget extends WidgetRenderable
      */
     protected function _run()
     {
-        $userId = 0;
-        $accessToken = '';
+        $clientId = '';
+        $userName = '';
 
-        if (!empty($this->accessToken)) {
-            $accessToken = $this->accessToken;
+        if (!empty($this->clientId)) {
+            $clientId = $this->clientId;
         }
 
-        if (!empty($this->userId))
+        if (!empty($this->userName))
         {
-            $userId = $this->userId;
+            $userName = $this->userName;
         }
 
-        $this->data = \Yii::$app->instagramComponent->fetchData($userId, $accessToken);
+        $this->data = \Yii::$app->instagramComponent->fetchData($userName, $clientId);
         return parent::_run();
     }
 }
