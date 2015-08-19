@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $widget \skeeks\cms\instagram\photos */
+/* @var $widget \skeeks\cms\instagram\widget */
 
 $items = $widget->data["data"];
 ?>

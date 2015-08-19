@@ -1,5 +1,5 @@
 {
-  "name": "kmarenov/cms-instagram-photos",
+  "name": "kmarenov/skeeks-cms-instagram-wiget",
   "description": "Виджет для Skeeks CMS, выводящий фотографии из Instagram",
   "keywords": [
     "module",
@@ -24,11 +24,12 @@
     }
   ],
   "require": {
-    "skeeks/cms": "*"
+    "skeeks/cms": "*",
+    "kmarenov/skeeks-cms-instagram-component": "*"
   },
   "autoload": {
     "psr-4": {
-      "skeeks\\cms\\instagram\\photos\\": ""
+      "skeeks\\cms\\instagram\\widget\\": ""
     }
   }
 }

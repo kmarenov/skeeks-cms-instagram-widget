@@ -13,7 +13,7 @@
 1) Добавить в `composer.json` файл проекта.
 
 ```
-"kmarenov/cms-instagram-photos": "*"
+"kmarenov/skeeks-cms-instagram-widget": "*"
 ```
 
 2) Запуск миграций и необходимых установок.
@@ -26,7 +26,7 @@ php yii cms/update
 
 ```php
 
-<?= \skeeks\cms\instagram\photos\InstagramPhotos::widget([
+<?= \skeeks\cms\instagram\widget\InstagramWidget::widget([
     'accessToken' => 'Your-api-access-token',
     'userId' => 456931526
 ]); ?>

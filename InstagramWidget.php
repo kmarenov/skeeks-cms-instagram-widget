@@ -1,5 +1,5 @@
 <?php
-namespace skeeks\cms\instagram\photos;
+namespace skeeks\cms\instagram\widget;
 
 use skeeks\cms\base\WidgetRenderable;
 use skeeks\cms\components\Cms;
@@ -9,10 +9,10 @@ use yii\helpers\Json;
 /**
  * @property string $jsonOptions
  *
- * Class InstagramPhotos
- * @package skeeks\cms\instagram\photos
+ * Class InstagramWidget
+ * @package skeeks\cms\instagram\widget
  */
-class InstagramPhotos extends WidgetRenderable
+class InstagramWidget extends WidgetRenderable
 {
     public $accessToken;
     public $userId;
@@ -61,33 +61,19 @@ class InstagramPhotos extends WidgetRenderable
      */
     protected function _run()
     {
-        $this->data = $this->fetchData($this->accessToken, $this->userId);
-        return parent::_run();
-    }
+        $userId = 0;
+        $accessToken = '';
 
-    /**
-     * @return array
-     */
-    function fetchData($accessToken, $userId){
-
-        $result = array();
-
-        if(empty($accessToken)||empty($userId))
-        {
-            return $result;
+        if (!empty($this->accessToken)) {
+            $accessToken = $this->accessToken;
         }
 
-        $url = "https://api.instagram.com/v1/users/".$userId."/media/recent?access_token=".$accessToken;
+        if (!empty($this->userId))
+        {
+            $userId = $this->userId;
+        }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-        $json = curl_exec($ch);
-        curl_close($ch);
-
-        $result = json_decode($json,true);
-
-        return $result;
+        $this->data = \Yii::$app->instagramComponent->fetchData($userId, $accessToken);
+        return parent::_run();
     }
 }
