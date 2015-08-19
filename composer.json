@@ -1,6 +1,6 @@
 {
   "name": "kmarenov/skeeks-cms-instagram-widget",
-  "description": "Виджет для Skeeks CMS, выводящий фотографии из Instagram",
+  "description": "Instagram widget for SkeekS CMS",
   "keywords": [
     "module",
     "cms",
