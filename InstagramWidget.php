@@ -16,7 +16,9 @@ class InstagramWidget extends WidgetRenderable
 {
     public $clientId;
     public $userName;
-    public $data;
+    public $media;
+    public $user;
+    public $error_message;
 
     static public function descriptorConfig()
     {
@@ -59,19 +61,10 @@ class InstagramWidget extends WidgetRenderable
      */
     protected function _run()
     {
-        $clientId = '';
-        $userName = '';
-
-        if (!empty($this->clientId)) {
-            $clientId = $this->clientId;
-        }
-
-        if (!empty($this->userName))
-        {
-            $userName = $this->userName;
-        }
-
-        $this->data = \Yii::$app->instagramComponent->fetchData($userName, $clientId);
+        \Yii::$app->instagramComponent->init($this->userName, $this->clientId);
+        $this->user = \Yii::$app->instagramComponent->findUser();
+        $this->media = \Yii::$app->instagramComponent->findMediaByUser();
+        $this->error_message = \Yii::$app->instagramComponent->error_message;
         return parent::_run();
     }
 }
