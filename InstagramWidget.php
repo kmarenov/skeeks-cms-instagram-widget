@@ -61,10 +61,14 @@ class InstagramWidget extends WidgetRenderable
      */
     protected function _run()
     {
-        \Yii::$app->instagramComponent->init($this->userName, $this->clientId);
-        $this->user = \Yii::$app->instagramComponent->findUser();
-        $this->media = \Yii::$app->instagramComponent->findMediaByUser();
-        $this->error_message = \Yii::$app->instagramComponent->error_message;
+        $instagram = \Yii::$app->instagramComponent;
+
+        $instagram->setUserName($this->userName);
+        $instagram->setClientId($this->clientId);
+
+        $this->user = $instagram->findUser();
+        $this->media = $instagram->findMediaByUser();
+        $this->error_message = $instagram->error_message;
         return parent::_run();
     }
 }
