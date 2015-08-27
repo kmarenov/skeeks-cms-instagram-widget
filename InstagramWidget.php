@@ -18,7 +18,16 @@ class InstagramWidget extends WidgetRenderable
     public $userName;
     public $media;
     public $user;
+    public $tag;
+    public $showBy = 'user';
     public $error_message;
+
+    public $width = 260;
+    public $imgWidth = 0;
+    public $inline = 4;
+    public $isShowToolbar = true;
+    public $count;
+    public $imgRes = 'thumbnail';
 
     static public function descriptorConfig()
     {
@@ -44,7 +53,13 @@ class InstagramWidget extends WidgetRenderable
         return array_merge(parent::attributeLabels(),
             [
                 'clientId' => 'CLIENT ID для доступа к API',
-                'userName' => 'Имя пользователя, фотографии которого показывать',
+                'userName' => 'Имя пользователя Instagram',
+                'tag' => 'Тэг',
+                'showBy' => 'Показывать фотографии',
+                'width' => 'Ширина виджета (px)',
+                'isShowToolbar' => 'Показывать блок с информацией (при выводе по тэгу не показывается)',
+                'count' => 'Сколько фотографий показывать',
+                'imgRes' => 'Разрешение изображений',
             ]);
     }
 
@@ -52,7 +67,9 @@ class InstagramWidget extends WidgetRenderable
     {
         return ArrayHelper::merge(parent::rules(),
             [
-                [['clientId', 'userName'], 'safe'],
+                [['isShowToolbar'], 'boolean'],
+                [['width', 'imgWidth', 'inline', 'count'], 'number'],
+                [['clientId', 'userName', 'tag', 'showBy', 'imgRes'], 'safe'],
             ]);
     }
 
@@ -61,14 +78,36 @@ class InstagramWidget extends WidgetRenderable
      */
     protected function _run()
     {
+        $this->width -= 2;
+
+        if ($this->width > 0) {
+            $this->imgWidth = round(($this->width - (17 + (9 * $this->inline))) / $this->inline);
+        }
+
+        if ($this->showBy == 'tag') {
+            $this->isShowToolbar = false;
+        }
+
         $instagram = \Yii::$app->instagramComponent;
 
-        $instagram->setUserName($this->userName);
         $instagram->setClientId($this->clientId);
+        $instagram->setCount($this->count);
 
-        $this->user = $instagram->findUser();
-        $this->media = $instagram->findMediaByUser();
+        if ($this->showBy == 'user') {
+            $instagram->setUserName($this->userName);
+            $this->user = $instagram->findUser();
+            $this->media = $instagram->findMediaByUser();
+        } elseif ($this->showBy == 'tag') {
+            $instagram->setTag($this->tag);
+            $this->media = $instagram->findMediaByTag();
+        }
+
+        if (empty($this->userName)) {
+            $this->userName = $instagram->userName;
+        }
+
         $this->error_message = $instagram->error_message;
+
         return parent::_run();
     }
 }
