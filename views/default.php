@@ -62,13 +62,19 @@ $title_text_width = $widget->width - 44;
 $title_text_display = ($widget->width < 160) ? 'display: none;' : '';
 
 $css = <<<CSS
+        .instagram-widget * {
+            box-sizing: unset !important;
+            -webkit-box-sizing: unset !important;
+            -moz-box-sizing: unset !important;
+        }
+
         .instagram-widget {
             width: {$widget->width}px;
             border: 1px solid #c3c3c3;
             background: #f9f9f9;
-            border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            -moz-border-radius: 5px 5px 5px 5px !important;
             overflow: hidden;
         }
 
@@ -152,9 +158,9 @@ $css = <<<CSS
             margin: 0 auto 0 auto;
             padding: 4px 4px 4px 10px;
             border: 3px solid #FFF;
-            border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            -moz-border-radius: 5px 5px 5px 5px !important;
             box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
         }
 
