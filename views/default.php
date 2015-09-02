@@ -58,8 +58,12 @@
 <? endif ?>
 
 <?php
-$css = ".instagram-widget {
-            width: " . $widget->width . "px;
+$title_text_width = $widget->width - 44;
+$title_text_display = ($widget->width < 160) ? 'display: none;' : '';
+
+$css = <<<CSS
+        .instagram-widget {
+            width: {$widget->width}px;
             border: 1px solid #c3c3c3;
             background: #f9f9f9;
             border-radius: 5px 5px 5px 5px;
@@ -85,14 +89,14 @@ $css = ".instagram-widget {
 
         .instagram-widget .title .text {
             float: left;
-            width: " . ($widget->width - 44) . "px;
+            width: {$title_text_width}px;
             height: 25px;
             overflow: hidden;
             margin: 5px 0 0 0;
             color: #FFF;
             font-size: 18px;
             white-space: nowrap;
-            " . ($widget->width < 160) ? 'display:none' : '' . "
+            {$title_text_display}
         }
 
         .instagram-widget .profile {
@@ -168,8 +172,8 @@ $css = ".instagram-widget {
             display: block;
             float: left;
             margin: 0 5px 5px 0;
-            width: " . $widget->imgWidth . "px;
-            height: " . $widget->imgWidth . "px;
+            width: {$widget->imgWidth}px;
+            height: {$widget->imgWidth}px;
             overflow: hidden;
             border: 2px solid #FFF;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
@@ -177,7 +181,7 @@ $css = ".instagram-widget {
         }
 
         .instagram-widget .data .image img {
-            width: " . $widget->imgWidth . "px;
+            width: {$widget->imgWidth}px;
         }
 
         .instagram-widget .data .image:hover {
@@ -189,7 +193,7 @@ $css = ".instagram-widget {
             text-align: center;
             margin: 10px 0 10px 0;
         }
-";
+CSS;
 
 $this->registerCss($css);
 ?>
