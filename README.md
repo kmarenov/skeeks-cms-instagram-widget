@@ -27,8 +27,8 @@ php yii cms/update
 ```php
 
 <?= \skeeks\cms\instagram\widget\InstagramWidget::widget([
-    'accessToken' => 'Your-api-access-token',
-    'userId' => 456931526
+    'clientId' => 'Your-api-client-id',
+    'userName' => 'shnurovs'
 ]); ?>
 
 ```
