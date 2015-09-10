@@ -13,7 +13,7 @@
 1) Добавить в `composer.json` файл проекта.
 
 ```
-"kmarenov/skeeks-cms-instagram-widget": "*"
+"rusoft/skeeks-cms-instagram-widget": "*"
 ```
 
 2) Запуск миграций и необходимых установок.
