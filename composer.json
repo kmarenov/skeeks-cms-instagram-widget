@@ -1,5 +1,5 @@
 {
-  "name": "rusoft/skeeks-cms-instagram-widget",
+  "name": "skeeks/cms-instagram-widget",
   "description": "Instagram widget for SkeekS CMS",
   "keywords": [
     "module",
@@ -9,7 +9,7 @@
     "app",
     "yii2"
   ],
-  "homepage": "http://rusoft.ru/",
+  "homepage": "http://skeeks.com/",
   "type": "yii2-extension",
   "license": "BSD-3-Clause",
   "support": {
@@ -24,7 +24,7 @@
     }
   ],
   "require": {
-    "rusoft/skeeks-cms-instagram-component": "*"
+    "skeeks/cms-instagram-component": "*"
   },
   "autoload": {
     "psr-4": {
