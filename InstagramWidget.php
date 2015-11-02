@@ -43,8 +43,7 @@ class InstagramWidget extends WidgetRenderable
      */
     public function getConfigFormFile()
     {
-        $class = new \ReflectionClass($this->className());
-        return dirname($class->getFileName()) . DIRECTORY_SEPARATOR . 'views/_settingsForm.php';
+        return __DIR__ . '/views/_settingsForm.php';
     }
 
 

@@ -17,7 +17,7 @@ use skeeks\cms\modules\admin\widgets\form\ActiveFormUseTab as ActiveForm;
 
 <?= $form->fieldSet('Параметры отображения'); ?>
 <?= $form->field($model, 'width'); ?>
-<?= $form->fieldCheckboxBoolean($model, 'isShowToolbar'); ?>
+<?= $form->field($model, 'isShowToolbar')->checkbox(); ?>
 <?= $form->field($model, 'count'); ?>
 <?= $form->fieldSelect($model, 'imgRes', array('thumbnail' => 'Маленькое (150x150)', 'low_resolution' => 'Средее (320x320)', 'standard_resolution' => 'Большое (640x640)')); ?>
 <?= $form->fieldSetEnd(); ?>
